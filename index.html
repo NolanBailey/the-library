@@ -13,6 +13,7 @@
             color: #333;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
         header {
             background-color: #3a6351;
@@ -20,11 +21,61 @@
             padding: 20px 0;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         header h1 {
             margin: 0;
             font-size: 3em;
             font-weight: 700;
+        }
+        header h1 a {
+            color: white;
+            text-decoration: none;
+        }
+        .menu-button {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .menu {
+            display: flex;
+            flex-direction: column;
+            background-color: #3a6351;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            text-align: left;
+            padding-top: 60px;
+            transition: left 0.3s ease;
+        }
+        .menu a {
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            border-bottom: 1px solid #2e8b57;
+        }
+        .menu a:hover {
+            background-color: #2e8b57;
+        }
+        .menu.open {
+            left: 0;
+        }
+        .close-button {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
         }
         .container {
             width: 80%;
@@ -35,13 +86,24 @@
             border: 1px solid #ddd;
             border-radius: 10px;
             margin-bottom: 30px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .podcast img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .podcast-content {
+            flex: 1;
         }
         .podcast h2 {
             margin-top: 0;
             color: #3a6351;
-            font-size: 2em;
+            font-size: 1.5em;
             font-weight: 700;
         }
         .podcast p {
@@ -59,23 +121,37 @@
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('open');
+        }
+    </script>
 </head>
 <body>
     <header>
-        <h1>The Library BETA</h1>
+        <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+        <h1><a href="#">The Library BETA</a></h1>
+        <nav class="menu">
+            <button class="close-button" onclick="toggleMenu()">&#10005;</button>
+            <a href="index.html">Home</a>
+            <a href="#">The Bookclub</a>
+            <a href="about.html">About</a>
+            <a href="coming_soon.html">Coming Soon</a>
+        </nav>
     </header>
     <div class="container">
+        <h1>Recent Podcasts</h1>
         <div class="podcast">
-            <h2>Episode 1: Introduction to The Library</h2>
-            <p>Welcome to the first episode of The Library BETA, where we explore the world of books and literature...</p>
-        </div>
-        <div class="podcast">
-            <h2>Episode 2: The Art of Storytelling</h2>
-            <p>In this episode, we delve into the techniques and nuances of storytelling...</p>
+            <img src="thumbnail1.jpg" alt="The Bookclub | Episode 1: The Last Olympian Thumbnail">
+            <div class="podcast-content">
+                <h2>The Bookclub | Episode 1: The Last Olympian</h2>
+                <p>Welcome to the first episode of The Bookclub! This month's book is... Percy Jackson and the Olympians: The Last Olympian.</p>
+            </div>
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 The Library BETA. All rights reserved.</p>
+        <p>&copy; 2024 Nolan Bailey. All rights reserved.</p>
     </footer>
 </body>
 </html>
